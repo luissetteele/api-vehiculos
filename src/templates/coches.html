@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Vehículos</title>
+</head>
+<body>
+
+    <h1>Listado de Vehículos</h1>
+
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>Marca</th>
+            <th>Matrícula</th>
+            <th>Eléctrico</th>
+            <th>Kilómetros</th>
+            <th>Detalle</th>
+        </tr>
+
+        {% for v in vehiculos %}
+        <tr>
+            <td>{{ v.id }}</td>
+            <td>{{ v.marca }}</td>
+            <td>{{ v.matricula }}</td>
+            <td>{{ "Sí" if v.electrico else "No" }}</td>
+            <td>{{ v.kilometros }}</td>
+            <td>
+                <a href="/vehiculos/{{ v.id }}">Ver</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="/">Volver al inicio</a>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle Vehículo</title>
+</head>
+<body>
+
+    <ul>
+        <li><strong>ID:</strong> {{ vehiculo.id }}</li>
+        <li><strong>Marca:</strong> {{ vehiculo.marca }}</li>
+        <li><strong>Matrícula:</strong> {{ vehiculo.matricula }}</li>
+        <li><strong>Eléctrico:</strong> {{ "Sí" if vehiculo.electrico else "No" }}</li>
+        <li><strong>Fecha matriculación:</strong> {{ vehiculo.fecha_matriculacion }}</li>
+        <li><strong>Kilómetros:</strong> {{ vehiculo.kilometros }}</li>
+    </ul>
+
+    <br>
+    <a href="/vehiculos">Volver al listado</a>
+
+</body>
+</html>
