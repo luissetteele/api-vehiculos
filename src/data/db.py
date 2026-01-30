@@ -7,7 +7,9 @@ db_server: str = "fastapi-db"
 db_port: int = 5432
 db_name: str = "vehiculosdb"
 
-DATABASE_URL = f"postgresql://{db_user}:{db_password}@{db_server}:{db_port}/{db_name}"
+DATABASE_URL = f"postgresql+psycopg2://{db_user}:{db_password}@{db_server}:{db_port}/{db_name}"
+engine = create_engine(DATABASE_URL, echo=True)
+
 
 engine = create_engine(DATABASE_URL, echo=True)
 
