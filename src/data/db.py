@@ -1,15 +1,23 @@
+import os
 from sqlmodel import create_engine, SQLModel, Session
-from models.vehiculos import Vehiculo  
+from models.vehiculos import Vehiculo
 
-db_user: str = "quevedo"
-db_password: str = "1234"
-db_server: str = "fastapi-db"
-db_port: int = 5432
-db_name: str = "vehiculosdb"
+# Configuración de variables de entorno
+db_user = os.getenv("DB_USER", "quevedo")
+db_password = os.getenv("DB_PASSWORD", "1234")
+db_server = os.getenv("DB_HOST", "localhost")
+db_port = int(os.getenv("DB_PORT", 5432))
+db_name = os.getenv("DB_NAME", "vehiculosdb")
 
-DATABASE_URL = f"postgresql+psycopg2://{db_user}:{db_password}@{db_server}:{db_port}/{db_name}"
-engine = create_engine(DATABASE_URL, echo=True)
+# Detectar tipo de base de datos según el puerto
+if db_port == 5432:
+    DATABASE_URL = f"postgresql+psycopg2://{db_user}:{db_password}@{db_server}:{db_port}/{db_name}"
+    print("✓ MODO: PostgreSQL detectado.")
+else:
+    DATABASE_URL = f"mysql+pymysql://{db_user}:{db_password}@{db_server}:{db_port}/{db_name}"
+    print("✓ MODO: MySQL detectado.")
 
+print(f"✓ Conectando a: {db_server}:{db_port}...")
 
 engine = create_engine(DATABASE_URL, echo=True)
 
